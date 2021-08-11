@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND noninteractive
 COPY systemctl /sbin/
 COPY entrypoint.sh /
 
-RUN chmod +x /sbin/systemctl /entrypoint.sh \
+RUN chmod +x /bin/systemctl /entrypoint.sh \
     && apt update \
     && apt install --no-install-recommends -y wget gnupg1 \
     && wget -O- http://downloads.3cx.com/downloads/3cxpbx/public.key | apt-key add - \   
@@ -33,4 +33,4 @@ VOLUME [ "/sys/fs/cgroup" ]
 
 EXPOSE 5015/tcp 5001/tcp 5090/tcp 5090/udp
 
-CMD    [ "/entrypoint.sh" ]
+CMD    [ "/lib/systemd/systemd", "--log-target=console", "--log-level=err"]
