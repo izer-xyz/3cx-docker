@@ -4,6 +4,7 @@ ENV container docker
 ENV LC_ALL C
 ENV DEBIAN_FRONTEND noninteractive
 
+COPY systemctl /sbin/
 
 RUN apt update \
     && apt install --no-install-recommends -y systemd systemd-sysv wget gnupg1 \
