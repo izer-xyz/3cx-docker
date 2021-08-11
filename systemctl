@@ -1,0 +1,5 @@
+#!/bin/sh
+
+pg_ctlcluster 11 main start
+
+echo $*
