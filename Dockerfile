@@ -5,8 +5,9 @@ ENV LC_ALL C
 ENV DEBIAN_FRONTEND noninteractive
 
 COPY systemctl /sbin/
+COPY entrypoint.sh /
 
-RUN chmod +x /sbin/systemctl \
+RUN chmod +x /sbin/systemctl /entrypoint.sh \
     && apt update \
     && apt install --no-install-recommends -y wget gnupg1 \
     && wget -O- http://downloads.3cx.com/downloads/3cxpbx/public.key | apt-key add - \   
@@ -27,7 +28,6 @@ RUN rm -f /lib/systemd/system/multi-user.target.wants/* \
     /lib/systemd/system/systemd-update-utmp*
 
 COPY   setupconfig.xml /etc/3cxpbx/setupconfig.xml
-COPY   entrypoint.sh /
 
 VOLUME [ "/sys/fs/cgroup" ]
 
