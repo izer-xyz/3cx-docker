@@ -6,13 +6,15 @@ ENV DEBIAN_FRONTEND noninteractive
 
 COPY systemctl /sbin/
 
-RUN apt update \
-    && apt install --no-install-recommends -y systemd systemd-sysv wget gnupg1 \
+RUN chmod +x /sbin/systemctl \
+    && apt update \
+    && apt install --no-install-recommends -y wget gnupg1 \
     && wget -O- http://downloads.3cx.com/downloads/3cxpbx/public.key | apt-key add - \   
     && echo "deb http://downloads.3cx.com/downloads/debian buster main" | tee /etc/apt/sources.list.d/3cxpbx.list \
     && apt update \
     && apt -y --no-install-recommends install 3cxpbx \
     && rm -rf /var/lib/3cxpbx \
+    && apt install --no-install-recommends -y systemd systemd-sysv  \
     && apt clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
