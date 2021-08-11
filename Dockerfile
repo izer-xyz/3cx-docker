@@ -4,10 +4,9 @@ ENV container docker
 ENV LC_ALL C
 ENV DEBIAN_FRONTEND noninteractive
 
-COPY systemctl /sbin/
-COPY entrypoint.sh /
+COPY systemctl /bin/
 
-RUN chmod +x /bin/systemctl /entrypoint.sh \
+RUN chmod +x /bin/systemctl \
     && apt update \
     && apt install --no-install-recommends -y wget gnupg1 \
     && wget -O- http://downloads.3cx.com/downloads/3cxpbx/public.key | apt-key add - \   
