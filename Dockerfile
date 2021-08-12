@@ -10,7 +10,7 @@ COPY 3cx-webconfig.service /etc/systemd/system/
 
 RUN chmod +x /bin/systemctl \
     && apt-get update -qq \
-    && apt-get install -qq --no-install-recommends -y unattended-upgrades wget gnupg1 \
+    && apt-get install -qq --no-install-recommends -y unattended-upgrades ca-certificates wget gnupg1 \
     && wget -O- http://downloads.3cx.com/downloads/3cxpbx/public.key | apt-key add - \   
     && echo "deb http://downloads.3cx.com/downloads/debian buster main" | tee /etc/apt/sources.list.d/3cxpbx.list \
     && apt-get update -qq \
