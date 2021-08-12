@@ -8,6 +8,10 @@ docker run \
   --tmpfs /run \
   --tmpfs /run/lock \
   -v      /sys/fs/cgroup:/sys/fs/cgroup:ro \
+  -p      5015:5015 \
+  -p      5001:5001 \
+  -p      5090:5090 \
+  -p      5090:5090/udp \
           ghcr.io/izer-xyz/3cx:latest
 ```
 
