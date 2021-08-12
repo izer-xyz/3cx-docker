@@ -6,6 +6,7 @@ ENV LC_ALL C
 ENV DEBIAN_FRONTEND noninteractive
 
 COPY systemctl /bin/
+COPY 3cx-webconfig.service /etc/systemd/system/
 
 RUN chmod +x /bin/systemctl \
     && apt update \
@@ -17,6 +18,7 @@ RUN chmod +x /bin/systemctl \
     && apt install -qq -y --no-install-recommends 3cxpbx=$PACKAGE_VERSION \
     && rm -rf /var/lib/3cxpbx \
     && apt install -qq -y --no-install-recommends systemd systemd-sysv  \
+    && systemctl enable 3cx-webconfig \
     && apt clean -qq \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -28,7 +30,7 @@ RUN rm -f /lib/systemd/system/multi-user.target.wants/* \
     /lib/systemd/system/sysinit.target.wants/systemd-tmpfiles-setup* \
     /lib/systemd/system/systemd-update-utmp*
 
-COPY   setupconfig.xml /etc/3cxpbx/setupconfig.xml
+COPY setupconfig.xml /etc/3cxpbx/setupconfig.xml
 
 VOLUME [ "/sys/fs/cgroup" ]
 
