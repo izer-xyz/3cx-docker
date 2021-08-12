@@ -18,19 +18,16 @@ RUN chmod +x /bin/systemctl \
     && apt install -qq -y --no-install-recommends 3cxpbx=$PACKAGE_VERSION \
     && rm -rf /var/lib/3cxpbx \
     && apt install -qq -y --no-install-recommends systemd systemd-sysv  \
-    && systemctl enable 3cx-webconfig \
     && apt clean -qq \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-RUN rm -f /lib/systemd/system/multi-user.target.wants/* \
+    && rm -f /lib/systemd/system/multi-user.target.wants/* \
     /etc/systemd/system/*.wants/* \
     /lib/systemd/system/local-fs.target.wants/* \
     /lib/systemd/system/sockets.target.wants/*udev* \
     /lib/systemd/system/sockets.target.wants/*initctl* \
     /lib/systemd/system/sysinit.target.wants/systemd-tmpfiles-setup* \
-    /lib/systemd/system/systemd-update-utmp*
-
-COPY setupconfig.xml /etc/3cxpbx/setupconfig.xml
+    /lib/systemd/system/systemd-update-utmp* \
+    && systemctl enable 3cx-webconfig
 
 VOLUME [ "/sys/fs/cgroup" ]
 
