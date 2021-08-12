@@ -19,7 +19,7 @@ RUN chmod +x /bin/systemctl \
     && rm -rf /var/lib/3cxpbx \
     && apt install -qq -y --no-install-recommends systemd systemd-sysv  \
     && apt clean -qq \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && rm -f /lib/systemd/system/multi-user.target.wants/* \
     /etc/systemd/system/*.wants/* \
     /lib/systemd/system/local-fs.target.wants/* \
