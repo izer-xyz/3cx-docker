@@ -4,7 +4,9 @@ After=network-online.target
 Wants=network-online.target
 
 [Service]
-ExecStart=-/usr/sbin/3CXWizard
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/3CXWizard
 KillMode=process
 
 [Install]
