@@ -1,5 +1,6 @@
 FROM debian:buster
 
+ARG PACKAGE_VERSION=18.0.0.1880
 ENV container docker
 ENV LC_ALL C
 ENV DEBIAN_FRONTEND noninteractive
@@ -8,14 +9,15 @@ COPY systemctl /bin/
 
 RUN chmod +x /bin/systemctl \
     && apt update \
-    && apt install --no-install-recommends -y wget gnupg1 \
+    && apt install -qq --no-install-recommends -y unattended-upgrades wget gnupg1 \
     && wget -O- http://downloads.3cx.com/downloads/3cxpbx/public.key | apt-key add - \   
     && echo "deb http://downloads.3cx.com/downloads/debian buster main" | tee /etc/apt/sources.list.d/3cxpbx.list \
     && apt update \
-    && apt -y --no-install-recommends install 3cxpbx \
+    && apt install -d -qq -y --no-install-recommends 3cxpbx:$PACKAGE_VERSION systemd systemd-sysv \
+    && apt install -qq -y --no-install-recommends 3cxpbx:$PACKAGE_VERSION \
     && rm -rf /var/lib/3cxpbx \
-    && apt install --no-install-recommends -y systemd systemd-sysv  \
-    && apt clean \
+    && apt install -qq -y --no-install-recommends systemd systemd-sysv  \
+    && apt clean -qq \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN rm -f /lib/systemd/system/multi-user.target.wants/* \
