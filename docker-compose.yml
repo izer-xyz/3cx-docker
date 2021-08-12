@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+
+  voip:
+    image: ghcr.io/izer-xyz/3cx:latest
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - tmp:/tmp
+      - run:/run
+      - lock:/run/lock
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    labels:
+      traefik.enable: true
+      traefik.http.services.voip.loadbalancer.server.port: 5001
