@@ -9,16 +9,16 @@ COPY systemctl /bin/
 COPY 3cx-webconfig.service /etc/systemd/system/
 
 RUN chmod +x /bin/systemctl \
-    && apt update \
-    && apt install -qq --no-install-recommends -y unattended-upgrades wget gnupg1 \
+    && apt-get update -qq \
+    && apt-get install -qq --no-install-recommends -y unattended-upgrades wget gnupg1 \
     && wget -O- http://downloads.3cx.com/downloads/3cxpbx/public.key | apt-key add - \   
     && echo "deb http://downloads.3cx.com/downloads/debian buster main" | tee /etc/apt/sources.list.d/3cxpbx.list \
-    && apt update \
-    && apt install -d -qq -y --no-install-recommends 3cxpbx=$PACKAGE_VERSION systemd systemd-sysv \
-    && apt install -qq -y --no-install-recommends 3cxpbx=$PACKAGE_VERSION \
+    && apt-get update -qq \
+    && apt-get install -d -qq -y --no-install-recommends 3cxpbx=$PACKAGE_VERSION systemd systemd-sysv \
+    && apt-get install -qq -y --no-install-recommends 3cxpbx=$PACKAGE_VERSION \
     && rm -rf /var/lib/3cxpbx \
-    && apt install -qq -y --no-install-recommends systemd systemd-sysv  \
-    && apt clean -qq \
+    && apt-get install -qq -y --no-install-recommends systemd systemd-sysv  \
+    && apt-get clean -qq \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && rm -f /lib/systemd/system/multi-user.target.wants/* \
     /etc/systemd/system/*.wants/* \
