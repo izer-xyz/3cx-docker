@@ -29,7 +29,7 @@ RUN chmod +x /bin/systemctl \
     && echo ForwardToConsole=yes >> /etc/systemd/journald.conf \
     && echo MaxLevelConsole=err >> /etc/systemd/journald.conf \
     && /usr/sbin/3CXCleanup \
-    && systemctl enable 3cx-webconfig
+    && systemctl enable 3cx-webconfig nginx
 
 VOLUME [ "/sys/fs/cgroup" ]
 
