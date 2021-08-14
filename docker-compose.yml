@@ -13,6 +13,10 @@ services:
       - lock:/run/lock # systemd
       - voip:/mnt/voip # persistent storage
       - /sys/fs/cgroup:/sys/fs/cgroup:ro #systemd
+    ports:
+      - "5015:5015" # setup
+      - "5090:5090"
+      - "5090:5090/udp"
     labels:
       traefik.enable: true
       traefik.http.services.voip.loadbalancer.server.port: 5000 # default 3cx http port
