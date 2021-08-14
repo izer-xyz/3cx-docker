@@ -27,6 +27,7 @@ RUN chmod +x /bin/systemctl \
     /lib/systemd/system/sysinit.target.wants/systemd-tmpfiles-setup* \
     /lib/systemd/system/systemd-update-utmp* \
     && echo ForwardToConsole=yes >> /etc/systemd/journald.conf \
+    && echo MaxLevelConsole=err >> /etc/systemd/journald.conf \
     && /usr/sbin/3CXCleanup \
     && systemctl enable 3cx-webconfig
 
