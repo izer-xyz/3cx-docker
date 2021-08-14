@@ -34,4 +34,4 @@ VOLUME [ "/sys/fs/cgroup" ]
 
 EXPOSE 5015/tcp 5000/tcp 5001/tcp 5090/tcp 5090/udp
 
-CMD    [ "/lib/systemd/systemd", "--log-target=console", "--log-level=err"]
+CMD    [ "/lib/systemd/systemd"]
