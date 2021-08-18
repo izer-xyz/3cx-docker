@@ -1,5 +1,5 @@
 [![GitHub Release](https://img.shields.io/github/v/release/izer-xyz/3cx-docker?style=flat-square)](https://github.com/izer-xyz/3cx-docker/releases)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/izer-xyz/3cx-docker/push?style=flat-square)](https://github.com/izer-xyz/3cx-docker/actions?query=workflow%3Apush++)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/izer-xyz/3cx-docker/push?style=flat-square)](https://github.com/izer-xyz/3cx-docker/actions/workflows/push.yml)
 
 # 3cx-docker
 
