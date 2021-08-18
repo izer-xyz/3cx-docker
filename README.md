@@ -1,3 +1,6 @@
+[![GitHub Release](https://img.shields.io/github/v/release/izer-xyz/3cx-docker?style=flat-square)](https://github.com/izer-xyz/3cx-docker/releases)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/izer-xyz/3cx-docker/push?style=flat-square)](https://github.com/izer-xyz/3cx-docker/actions?query=workflow%3Apush++)
+
 # 3cx-docker
 
 3CX PBX Phone System docker image. Advantages over [farfui/3cx](https://hub.docker.com/r/farfui/3cx) are:
