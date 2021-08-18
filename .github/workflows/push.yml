@@ -49,7 +49,6 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/3cx:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/3cx:${{ env.package_version }}
-            ghcr.io/izer-xyz/3cx:latest
             ghcr.io/izer-xyz/3cx:${{ env.package_version }}
       -
         name: Create Release
