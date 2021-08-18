@@ -47,11 +47,11 @@ jobs:
           push: true
           build-args: |
             PACKAGE_VERSION=${{ env.package_version }}
-            #${{ secrets.DOCKERHUB_USERNAME }}/3cx:latest
-            #${{ secrets.DOCKERHUB_USERNAME }}/3cx:${{ env.package_version }}
           tags: |
             ghcr.io/izer-xyz/3cx:${{ env.package_version }}
             ghcr.io/izer-xyz/3cx:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/3cx:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/3cx:${{ env.package_version }}
       -
         name: Create Release
         uses: actions/create-release@v1
