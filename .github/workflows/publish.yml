@@ -14,7 +14,7 @@ jobs:
         run: |
           export url=http://downloads.3cx.com/downloads/debian/dists/buster/main/binary-amd64/Packages.gz
           export package=3cxpbx
-          echo package_version=$(curl -s $url | gunzip | grep -A 10 "^Package: $package$" | awk '/Version/ { print $2 }' | sort -r | head -1) >> $GITHUB_ENV
+          echo package_version=$(curl -s $url | gunzip | grep -A 10 "^Package: $package$" | awk '/Version: 16/ { print $2 }' | sort -r | head -1) >> $GITHUB_ENV
       -
         name: Checkout
         uses: actions/checkout@v2
@@ -32,14 +32,22 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.CR_PAT }}
       -
+        name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
         name: Build and push
         uses: docker/build-push-action@v2
         with:
           context: .
-          platforms: linux/amd64, linux/arm64
-          push: true
+          platforms: linux/amd64, linux/arm64, linux/arm/v7
+          push: false
           build-args: |
             PACKAGE_VERSION=${{ env.package_version }}
           tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/3cx:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/3cx:${{ env.package_version }}
             ghcr.io/izer-xyz/3cx:latest
             ghcr.io/izer-xyz/3cx:${{ env.package_version }}
