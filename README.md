@@ -6,6 +6,7 @@
  * No special priviledges (CAP_* or --priviledged)
  * Simpler / automated build process (one step)
  * Easier setup of 3CX (runs the web config on first start)
+ * Based on Debian Buster
 
 ## Usage 
 
@@ -45,3 +46,4 @@ $ docker run \
  * https://www.3cx.com/docs/ports/
  * https://github.com/ekondayan/docker-3cx
  * https://hub.docker.com/r/jrei/systemd-debian
+ * https://github.com/docker/build-push-action/blob/master/docs/advanced/push-multi-registries.md
