@@ -47,15 +47,18 @@ jobs:
           build-args: |
             PACKAGE_VERSION=${{ env.package_version }}
           tags: |
+            ghcr.io/izer-xyz/3cx:${{ env.package_version }}-${{ github.job }}
             ghcr.io/izer-xyz/3cx:${{ env.package_version }}
             ghcr.io/izer-xyz/3cx:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/3cx:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/3cx:${{ env.package_version }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/3cx:${{ env.package_version }}-${{ github.job }}
+
       -
         name: Create Release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: ${{ env.package_version }}
-          release_name: Release v${{ env.package_version }}
+          tag_name: ${{ env.package_version }}-${{ github.job }}
+          release_name: Release v${{ env.package_version }}-${{ github.job }}
