@@ -1,5 +1,6 @@
 #!/bin/sh
 
+killall -9 postgres
 pg_ctlcluster 11 main start
 
 echo $*
