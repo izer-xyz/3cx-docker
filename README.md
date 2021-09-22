@@ -1,5 +1,7 @@
-[![GitHub Release](https://img.shields.io/github/v/release/izer-xyz/3cx-docker?style=flat-square)](https://github.com/izer-xyz/3cx-docker/releases)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/izer-xyz/3cx-docker/push?style=flat-square)](https://github.com/izer-xyz/3cx-docker/actions/workflows/push.yml)
+[![GitHub Release](https://img.shields.io/github/v/release/izer-xyz/3cx-docker?style=flat-square)](https://github.com/izer-xyz/3cx-docker/releases)
+[![DockerHub Pulls](https://img.shields.io/docker/pulls/izerxyz/3cx?style=flat-square)](https://github.com/izer-xyz/3cx-docker/actions/workflows/push.yml)
+
 
 # 3cx-docker
 
@@ -9,7 +11,6 @@
  * No special priviledges (CAP_* or --priviledged)
  * Simpler / automated build process (one step)
  * Easier setup of 3CX (runs the web config on first start)
- * Based on Debian Buster
 
 ## Usage 
 
