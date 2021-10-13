@@ -38,6 +38,15 @@ $ docker run \
   chrome http://[hostname]:5015/?v=2
 ```
 
+## Upgrade process
+
+ 1. Backup 3cx instance (good idea to run scheduled backups as the container may not persits data)
+ 2. Download backup zip
+ 3. Upgrade container to next version
+ 4. Use webconfig to restore from backup zip
+ 5. Change backup location if it was modified (backup doesn't seem to contain the config)
+
+
 ## Troubleshooting
 
  * Failed setup (Warning this will delete all user data!): 
