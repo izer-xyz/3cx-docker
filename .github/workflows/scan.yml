@@ -17,4 +17,4 @@ jobs:
     steps:
      - uses: azure/container-scan@v0
        with:
-        image-name: izerxyz:3cx
+        image-name: izerxyz/3cx:latest
