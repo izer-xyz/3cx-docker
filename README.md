@@ -45,6 +45,7 @@ $ docker run \
  3. Upgrade container to next version
  4. Use webconfig to restore from backup zip
  5. Change backup location if it was modified (backup doesn't seem to contain the config)
+ 6. Check E164 Processing settings (add/remove prefixes)
 
 
 ## Troubleshooting
