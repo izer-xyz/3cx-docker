@@ -5,7 +5,7 @@
 
 # 3cx-docker
 
-3CX PBX Phone System docker image. Advantages over [farfui/3cx](https://hub.docker.com/r/farfui/3cx) are:
+3CX PBX Phone System docker image:
 
  * Multi arch build (Arm + x86)
  * No special priviledges (CAP_* or --priviledged)
@@ -61,3 +61,4 @@ $ docker run \
  * https://github.com/ekondayan/docker-3cx
  * https://hub.docker.com/r/jrei/systemd-debian
  * https://github.com/docker/build-push-action/blob/master/docs/advanced/push-multi-registries.md
+ * https://github.com/ekondayan/docker-3cx
