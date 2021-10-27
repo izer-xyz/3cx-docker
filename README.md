@@ -61,4 +61,3 @@ $ docker run \
  * https://github.com/ekondayan/docker-3cx
  * https://hub.docker.com/r/jrei/systemd-debian
  * https://github.com/docker/build-push-action/blob/master/docs/advanced/push-multi-registries.md
- * https://github.com/ekondayan/docker-3cx
