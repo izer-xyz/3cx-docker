@@ -1,12 +1,11 @@
 FROM debian:buster
 
-ARG PACKAGE_VERSION=16.0.8.9
+ARG PACKAGE_VERSION=18.0.1.237
 ENV container docker
 ENV LC_ALL C
 ENV DEBIAN_FRONTEND noninteractive
 
 COPY systemctl /bin/
-COPY 3cx-webconfig.service /etc/systemd/system/
 
 RUN chmod +x /bin/systemctl \
     && apt-get update -qq \
@@ -29,10 +28,14 @@ RUN chmod +x /bin/systemctl \
     && echo ForwardToConsole=yes >> /etc/systemd/journald.conf \
     && echo MaxLevelConsole=err >> /etc/systemd/journald.conf \
     && /usr/sbin/3CXCleanup \
-    && systemctl enable 3cx-webconfig nginx
+    && systemctl enable nginx
 
 VOLUME [ "/sys/fs/cgroup" ]
 
 EXPOSE 5015/tcp 5000/tcp 5001/tcp 5090/tcp 5090/udp
 
-CMD    [ "/lib/systemd/systemd"]
+COPY 3cx-webconfig.service /etc/systemd/system/
+COPY docker-3cx.sh /usr/local/bin/
+COPY 3cx-restore-setupconfig.xml /usr/local/share/
+
+CMD    [ "docker-3cx.sh" ]

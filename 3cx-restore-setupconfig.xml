@@ -1,0 +1,58 @@
+<tcxinit>
+    <option>
+      <code>InstallationType</code>
+      <answer>restore</answer>
+    </option>
+    <option>
+      <code>BackupFile</code>
+      <answer>${CX_BACKUP_FILE}</answer>
+    </option>
+    <option>
+      <code>BackupPassword</code>
+      <answer/>
+    </option>
+    <option>
+      <code>PublicIP</code>
+      <answer>manual</answer><!--"auto" means automatically detect the ip address. Useful in most cases. Otherwise you can put "manual" and fill in Manual Public IP below-->
+    </option>
+    <option>
+      <code>ManualPublicIP</code><!--If public IP = "manual" enter ip here. if "auto" skip-->
+      <answer>${CX_PUBLIC_IP}</answer>
+    </option>
+    <option>
+      <code>StaticOrDynamicIP</code>
+      <answer>static</answer><!--If your public ip is Static (does not change) use "static" otherwise use "dynamic"-->
+    </option>
+    <option>
+      <code>LocalIP</code><!--Here we ask to choose the local ip of the machine. If you have no nat then the public is taken--> 
+      <answer>auto</answer><!--if auto it takes the first ip on the network stack in the list. If you answer with the "manual" option (in multiple nic adapters you will have more interfaces,) then you need to populate the next option ManualLocalIP with the local IP Address you want"-->
+    </option>
+    <option>
+      <code>ManualLocalIP</code><!--Answer only if above question you choose that you want to enter ip manually-->
+	  <answer/>
+    </option>
+    <option>
+      <code>HasLocalDns</code><!--"yes" assumes that you have a manageable local dns example windows dns. "no" assumes that you do not have a dns and therefore will fallback to using IP Addresses --> 
+      <answer>yes</answer>
+    </option>
+    <option>
+      <code>InternalFqdn</code><!--Used when HasLocalDns = yes. Can be skipped if HasLocalDns = no-->
+      <answer>${CX_INTERNAL_FQDN}</answer><!--this is the full internal FQDN. If in HasLocalDns  you select "yes", this means you have a managed dns so therefore we need to know the FQDN local. if you select 2 then you can skip this out. "-->
+    </option>
+    <option>
+      <code>HttpsPort</code>
+      <answer>443</answer>
+    </option>
+    <option>
+      <code>HttpPort</code>
+      <answer>5000</answer>
+    </option>
+	<option>
+      <code>SipPort</code>
+      <answer>5060</answer>
+    </option>
+	<option>
+      <code>TunnelPort</code>
+      <answer>5090</answer>
+    </option>
+  </tcxinit>
