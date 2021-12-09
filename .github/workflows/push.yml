@@ -44,19 +44,17 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          platforms: linux/amd64, linux/arm64
-          # , linux/arm
+          platforms: linux/amd64, linux/arm64, linux/arm
           push: true
           build-args: |
             PACKAGE_VERSION=${{ env.package_version }}
           tags: |
             ghcr.io/izer-xyz/3cx:${{ env.package_version }}-${{ github.run_number }}
             ghcr.io/izer-xyz/3cx:${{ env.package_version }}
-            ghcr.io/izer-xyz/3cx:dev
-      
-# ${{ secrets.DOCKERHUB_USERNAME }}/3cx:latest
-# ${{ secrets.DOCKERHUB_USERNAME }}/3cx:${{ env.package_version }}
-# ${{ secrets.DOCKERHUB_USERNAME }}/3cx:${{ env.package_version }}-${{ github.run_number }}
+            ghcr.io/izer-xyz/3cx:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/3cx:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/3cx:${{ env.package_version }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/3cx:${{ env.package_version }}-${{ github.run_number }}
 
       -
         name: Create Release
