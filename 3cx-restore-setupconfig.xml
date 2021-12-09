@@ -1,3 +1,4 @@
+<SetupConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 <tcxinit>
     <option>
       <code>InstallationType</code>
@@ -56,3 +57,4 @@
       <answer>5090</answer>
     </option>
   </tcxinit>
+</SetupConfig>
