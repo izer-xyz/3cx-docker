@@ -14,7 +14,7 @@ jobs:
         run: |
           export url=http://downloads.3cx.com/downloads/debian/dists/buster/main/binary-amd64/Packages.gz
           export package=3cxpbx
-          echo package_version=$(curl -s $url | gunzip | grep -A 10 "^Package: $package$" | awk '/Version: 16/ { print $2 }' | sort -r | head -1) >> $GITHUB_ENV
+          echo package_version=$(curl -s $url | gunzip | grep -A 10 "^Package: $package$" | awk '/Version: / { print $2 }' | sort -r | head -1) >> $GITHUB_ENV
       -
         name: Checkout
         uses: actions/checkout@v2
@@ -51,8 +51,8 @@ jobs:
           tags: |
             ghcr.io/izer-xyz/3cx:${{ env.package_version }}-${{ github.run_number }}
             ghcr.io/izer-xyz/3cx:${{ env.package_version }}
-            ghcr.io/izer-xyz/3cx:dev
-            ${{ secrets.DOCKERHUB_USERNAME }}/3cx:dev
+            ghcr.io/izer-xyz/3cx:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/3cx:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/3cx:${{ env.package_version }}
             ${{ secrets.DOCKERHUB_USERNAME }}/3cx:${{ env.package_version }}-${{ github.run_number }}
 
