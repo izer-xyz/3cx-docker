@@ -6,6 +6,9 @@ on:
    # branches:
     #  - 'main'
 
+env:
+  DEV: true # true|false
+  
 jobs:
   docker:
     runs-on: ubuntu-latest
@@ -41,6 +44,7 @@ jobs:
           password: ${{ secrets.CR_PAT }}
       -
         name: Build and push
+        if: ${{ ! env.DEV }}
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -49,15 +53,16 @@ jobs:
           build-args: |
             PACKAGE_VERSION=${{ env.package_version }}
           tags: |
-            ghcr.io/izer-xyz/3cx:${{ env.package_version }}-${{ github.run_number }}
-            ghcr.io/izer-xyz/3cx:${{ env.package_version }}
-            ghcr.io/izer-xyz/3cx:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/3cx:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/3cx:${{ env.package_version }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/3cx:${{ env.package_version }}-${{ github.run_number }}
+            ghcr.io/izer-xyz/3cx:${{ env.package_version }}-${{ github.run_number }}-dev
+            ghcr.io/izer-xyz/3cx:${{ env.package_version }}-dev
+            ghcr.io/izer-xyz/3cx:dev
+            ${{ secrets.DOCKERHUB_USERNAME }}/3cx:dev
+            ${{ secrets.DOCKERHUB_USERNAME }}/3cx:${{ env.package_version }}-dev
+            ${{ secrets.DOCKERHUB_USERNAME }}/3cx:${{ env.package_version }}-${{ github.run_number }}-dev
 
       -
         name: Create Release
+        if: ${{ ! env.DEV }}
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
