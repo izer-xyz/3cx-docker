@@ -56,5 +56,9 @@
       <code>TunnelPort</code>
       <answer>5090</answer>
     </option>
+    <option>
+      <code>ResellerId</code>
+      <answer/>
+    </option>
   </tcxinit>
 </SetupConfig>
