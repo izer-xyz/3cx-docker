@@ -4,7 +4,8 @@
 
 # first run?
 if [ ! -d $var ]; then
-   echo Configure instance ...
+   echo First run. Configure instance ...
+   echo Check config tool logs in case of any issues /var/lib/3cxpbx/Data/Logs/PbxConfigTool.log
    
    # has setup config
    if [ -f /etc/3cxpbx/setupconfig.xml ]; then
@@ -12,20 +13,21 @@ if [ ! -d $var ]; then
    else   
      # has backup?
      if [ -f ${CX_BACKUP_FILE:-/no-default-backup} ]; then
-       echo No WebConfig. Restore from $CX_BACKUP_FILE ...
+       echo Backup found. No WebConfig. 
+       echo Restore from $CX_BACKUP_FILE ...
        echo Generate default restore config /etc/3cxpbx/setupconfig.xml ...
        mkdir /etc/3cxpbx
-       envsubst < /usr/local/share/3cx-restore-setupconfig.xml > /etc/3cxpbx/setupconfig.xml
+       envsubst < /usr/local/share/setupconfig-3cx-restore.xml > /etc/3cxpbx/setupconfig.xml
      else
        echo Run WebConfig on port :5015
      fi   
    fi  
    
    # run wizard after systemd
-   systemctl enable 3cx-webconfig
+   systemctl enable setup-3cx
 else
    echo Config exists $var
-   systemctl disable 3cx-webconfig
+   systemctl disable setup-3cx
 fi
 
 exec /lib/systemd/systemd --log-target=console --log-level=err
