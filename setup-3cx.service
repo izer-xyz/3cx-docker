@@ -1,5 +1,5 @@
 [Unit]
-Description=3cx-webconfig
+Description=Setup 3CX 
 After=network-online.target
 Wants=network-online.target
 
