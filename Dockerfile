@@ -34,8 +34,8 @@ VOLUME [ "/sys/fs/cgroup" ]
 
 EXPOSE 5015/tcp 5000/tcp 5001/tcp 5090/tcp 5090/udp
 
-COPY 3cx-webconfig.service /etc/systemd/system/
-COPY docker-3cx.sh /usr/local/bin/
-COPY 3cx-restore-setupconfig.xml /usr/local/share/
+COPY setup-3cx.service /etc/systemd/system/
+COPY init-3cx.sh /usr/local/bin/
+COPY setupconfig-3cx-restore.xml /usr/local/share/
 
-CMD    [ "docker-3cx.sh" ]
+CMD    [ "init-3cx.sh" ]
