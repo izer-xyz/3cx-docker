@@ -43,6 +43,19 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.CR_PAT }}
       -
+        name: Build and push (DEV)
+        if: ${{ env.DEV }}
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          platforms: linux/arm64
+          push: true
+          build-args: |
+            PACKAGE_VERSION=${{ env.package_version }}
+          tags: |
+            ghcr.io/izer-xyz/3cx:dev
+
+      -
         name: Build and push
         if: ${{ ! env.DEV }}
         uses: docker/build-push-action@v2
