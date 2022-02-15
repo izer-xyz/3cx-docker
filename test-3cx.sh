@@ -2,11 +2,13 @@
 
 echo Testing...
 
-echo sleep t
-sleep 5
+echo -n Wait for webconfig
+while ! netstat -tna | grep 'LISTEN\>' | grep -q ':5015\>'; do
+  echo -n .
+  sleep 2
+done
 
-netstat -ln | grep 5015
-ps x
+echo done.
 
 echo Shutdown...
 shutdown -h now
