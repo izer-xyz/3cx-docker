@@ -7,7 +7,7 @@ on:
     #  - 'main'
 
 env:
-  DEV: false
+  DEV: true
   
 jobs:
   docker:
