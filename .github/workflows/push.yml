@@ -6,8 +6,8 @@ on:
    # branches:
     #  - 'main'
 
-env:
-  DEV: false # true|false
+#env:
+#  DEV: true
   
 jobs:
   docker:
