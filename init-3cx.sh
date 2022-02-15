@@ -31,11 +31,9 @@ else
 fi
 
 if [ "${MODE}" = "test" ]; then
-   echo Test mode.
-   setsid /usr/sbin/3CXWizard &
-   sleep 3
-   netstat -ln | grep 5015
-   exit 0
-else
-   exec /lib/systemd/systemd --log-target=console --log-level=err
+   echo Test mode detected.
+   test-3cx.sh &
 fi
+
+exec /lib/systemd/systemd --log-target=console --log-level=err
+
