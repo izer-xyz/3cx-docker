@@ -55,7 +55,7 @@ jobs:
         name: Test image
         timeout-minutes: 1
         run: |
-          docker run --rm --env MODE=test ghcr.io/izer-xyz/3cx:test
+          docker run --rm --env MODE=test --tmpfs /tmp --tmpfs /run --tmpfs /run/lock -v /sys/fs/cgroup:/sys/fs/cgroup:ro ghcr.io/izer-xyz/3cx:test
       -
         name: Build and push
         if: ${{ ! env.DEV }}
