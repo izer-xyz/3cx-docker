@@ -1,37 +1,27 @@
-version: '2'
+version: '2.4'
 
 services:
 
   voip:
     image: ghcr.io/izer-xyz/3cx:latest
     restart: unless-stopped
-    tty: true # get systemd to log to console
+    tty: true 
+    environment:
+      - CX_BACKUP_FILE=/mnt/voip/backups/latest.zip
+      - CX_PUBLIC_IP=X.X.X.X
+      - CX_INTERNAL_FQDN=voip.example.com
+    tmpfs:
+      - /tmp/
+      - /run/
     volumes:
-      - /etc/localtime:/etc/localtime:ro # set time to the host time
-      - tmp:/tmp # systemd 
-      - run:/run # systemd
-      - lock:/run/lock # systemd
-      - voip:/mnt/voip # persistent storage
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro #systemd
+      - voip:/mnt/voip
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
     ports:
-      - "5015:5015" # setup
+      - "5015:5015"
+      - "5060:5060"
+      - "5060:5060/udp"
       - "5090:5090"
       - "5090:5090/udp"
-    labels:
-      traefik.enable: true
-      traefik.http.services.voip.loadbalancer.server.port: 5000 # default 3cx http port
-      
+
 volumes:
   voip:
-  tmp:
-    driver_opts:
-      type: tmpfs
-      device: tmpfs
-  run:
-    driver_opts:
-      type: tmpfs
-      device: tmpfs
-  lock:
-    driver_opts:
-      type: tmpfs
-      device: tmpfs
