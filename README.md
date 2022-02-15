@@ -75,7 +75,7 @@ Where,
 
 ### Automated custom (not tested)
 
-BYO `setupconfig.xml`. The example assumes that the `/mnt/3cx/config/setupconfig.xml` exists with the approriate configuation to setup the instance.
+BYO [`setupconfig.xml`](https://www.3cx.com/docs/configure-pbx-automatically/). The example assumes that the `/mnt/3cx/config/setupconfig.xml` exists with the approriate configuation to setup the instance.
 
 ```
 $ docker run \
@@ -122,3 +122,5 @@ $ docker run \
  * https://github.com/ekondayan/docker-3cx
  * https://hub.docker.com/r/jrei/systemd-debian
  * https://github.com/docker/build-push-action/blob/master/docs/advanced/push-multi-registries.md
+ * https://www.3cx.com/docs/configure-pbx-automatically/
+ * https://www.3cx.com/wp-content/uploads/2016/11/setupconfig.xml
