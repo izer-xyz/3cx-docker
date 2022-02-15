@@ -48,7 +48,6 @@ jobs:
         with:
           context: .
           load: true
-          push: true
           tags: ghcr.io/izer-xyz/3cx:test
           cache-from: type=gha
           cache-to: type=gha,mode=max
