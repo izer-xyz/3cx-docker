@@ -30,4 +30,9 @@ else
    systemctl disable setup-3cx
 fi
 
-exec /lib/systemd/systemd --log-target=console --log-level=err
+if [ "${MODE}" = "test" ]; then
+   echo Test mode.
+   exit -1
+else
+   exec /lib/systemd/systemd --log-target=console --log-level=err
+fi
