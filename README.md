@@ -40,6 +40,64 @@ $ docker run \
 
 ## Upgrade process
 
+Upgrade (and setup process) only works on the first run. If fails wipe the container and start again or use `3CXCleanup`. 
+
+### Automated / simple
+
+Upgrade using simple [restore config](setupconfig-3cx-restore.xml):
+
+```
+$ docker run \
+  -d  \
+  -t \
+  --tmpfs /tmp \
+  --tmpfs /run \
+  --tmpfs /run/lock \
+  -v      /sys/fs/cgroup:/sys/fs/cgroup:ro \
+  -p      5015:5015 \
+  -p      5000:5000 \
+  -p      5001:5001 \
+  -p      5060:5060 \
+  -p      5060:5060/udp \
+  -p      5090:5090 \
+  -p      5090:5090/udp \
+  -v    /mnt/3cx:/mnt/3cx \
+  --env CX_BACKUP_FILE=/mnt/voip/backups/3CXScheduledBackup.zip \
+  --env CX_PUBLIC_IP=X.X.X.X \
+  --env CX_INTERNAL_FQDN=3cx.example.com \
+          ghcr.io/izer-xyz/3cx:latest
+```
+Where,
+ * `CX_BACKUP_FILE`: is the scheduled backup file location to restore from
+ * `CX_PIBLIC_IP`: public ipv4 address of the server
+ * `CX_INTERNAL_FQDN`: internal full qualified domain name of the server (not the 3cx domain)
+
+### Automated custom (not tested)
+
+BYO `setupconfig.xml`. The example assumes that the `/mnt/3cx/config/setupconfig.xml` exists with the approriate configuation to setup the instance.
+
+```
+$ docker run \
+  -d  \
+  -t \
+  --tmpfs /tmp \
+  --tmpfs /run \
+  --tmpfs /run/lock \
+  -v      /sys/fs/cgroup:/sys/fs/cgroup:ro \
+  -p      5015:5015 \
+  -p      5000:5000 \
+  -p      5001:5001 \
+  -p      5060:5060 \
+  -p      5060:5060/udp \
+  -p      5090:5090 \
+  -p      5090:5090/udp \
+  -v    /mnt/3cx:/mnt/3cx \
+  -v    /mnt/3cx/config:/etc/3cxpbx \
+          ghcr.io/izer-xyz/3cx:latest
+```
+
+### Manual upgrade
+
  1. Backup 3cx instance (good idea to run scheduled backups as the container may not persits data)
  2. Download backup zip
  3. Upgrade container to next version
@@ -49,6 +107,8 @@ $ docker run \
 
 
 ## Troubleshooting
+ 
+ * Check the logs: `/var/lib/3cxpbx/Data/Logs/PbxConfigTool.log`
 
  * Failed setup (Warning this will delete all user data!): 
 ```
