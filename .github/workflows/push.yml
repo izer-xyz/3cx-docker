@@ -61,7 +61,7 @@ jobs:
           docker run --rm --env MODE=test --tmpfs /tmp --tmpfs /run --tmpfs /run/lock -v /sys/fs/cgroup:/sys/fs/cgroup:ro ghcr.io/izer-xyz/3cx:test
       -
         name: Build and push (release)
-        if: inputs.release
+        if: inputs.release == 'true'
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -79,7 +79,7 @@ jobs:
 
       -
         name: Create Release
-        if: inputs.release
+        if: inputs.release == 'true'
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
