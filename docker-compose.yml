@@ -7,12 +7,13 @@ services:
     restart: unless-stopped
     tty: true 
     environment:
-      - CX_BACKUP_FILE=/mnt/voip/backups/latest.zip
+      - CX_BACKUP_FILE=/mnt/voip/backups/3CXScheduledBackup.zip
       - CX_PUBLIC_IP=X.X.X.X
       - CX_INTERNAL_FQDN=voip.example.com
     tmpfs:
       - /tmp/
       - /run/
+      - /run/lock
     volumes:
       - voip:/mnt/voip
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
