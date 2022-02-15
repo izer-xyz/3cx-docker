@@ -3,7 +3,7 @@
 echo Testing...
 
 echo sleep t
-skeep 5
+sleep 5
 
 netstat -ln | grep 5015
 ps x
