@@ -38,4 +38,6 @@ COPY setup-3cx.service /etc/systemd/system/
 COPY init-3cx.sh /usr/local/bin/
 COPY setupconfig-3cx-restore.xml /usr/local/share/
 
+COPY test-3cx.sh /usr/local/bin/
+
 CMD    [ "init-3cx.sh" ]
