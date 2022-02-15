@@ -2,6 +2,7 @@
 [![GitHub Release](https://img.shields.io/github/v/release/izer-xyz/3cx-docker?style=flat-square)](https://github.com/izer-xyz/3cx-docker/releases)
 [![DockerHub Pulls](https://img.shields.io/docker/pulls/izerxyz/3cx?style=flat-square)](https://hub.docker.com/r/izerxyz/3cx)
 
+> Use at your own risk. It comes with no guarantee. Always do backups. Etc.
 
 # 3cx-docker
 
@@ -44,7 +45,7 @@ Upgrade (and setup process) only works on the first run. If fails wipe the conta
 
 ### Automated / simple
 
-Upgrade using simple [restore config](setupconfig-3cx-restore.xml):
+Upgrade using simple/opinionted [restore config](setupconfig-3cx-restore.xml):
 
 ```
 $ docker run \
@@ -70,7 +71,7 @@ $ docker run \
 Where,
  * `CX_BACKUP_FILE`: is the scheduled backup file location to restore from
  * `CX_PIBLIC_IP`: public ipv4 address of the server
- * `CX_INTERNAL_FQDN`: internal full qualified domain name of the server (not the 3cx domain)
+ * `CX_INTERNAL_FQDN`: internal full qualified domain name of the server (not the 3cx supplied public domain)
 
 ### Automated custom (not tested)
 
