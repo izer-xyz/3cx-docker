@@ -67,12 +67,12 @@ jobs:
           build-args: |
             PACKAGE_VERSION=${{ env.package_version }}
           tags: |
-            ghcr.io/izer-xyz/3cx:${{ env.package_version }}-${{ github.run_number }}-dev
-            ghcr.io/izer-xyz/3cx:${{ env.package_version }}-dev
-            ghcr.io/izer-xyz/3cx:dev
-            ${{ secrets.DOCKERHUB_USERNAME }}/3cx:dev
-            ${{ secrets.DOCKERHUB_USERNAME }}/3cx:${{ env.package_version }}-dev
-            ${{ secrets.DOCKERHUB_USERNAME }}/3cx:${{ env.package_version }}-${{ github.run_number }}-dev
+            ghcr.io/izer-xyz/3cx:${{ env.package_version }}-${{ github.run_number }}
+            ghcr.io/izer-xyz/3cx:${{ env.package_version }}
+            ghcr.io/izer-xyz/3cx:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/3cx:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/3cx:${{ env.package_version }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/3cx:${{ env.package_version }}-${{ github.run_number }}
 
       -
         name: Create Release
