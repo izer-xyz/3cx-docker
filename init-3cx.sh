@@ -33,9 +33,9 @@ fi
 if [ "${MODE}" = "test" ]; then
    echo Test mode detected.
    setsid test-3cx.sh &
-   
-   ps x
 fi
+
+echo Start systemd
 
 exec /lib/systemd/systemd --log-target=console --log-level=err
 
