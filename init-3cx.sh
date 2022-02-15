@@ -32,7 +32,7 @@ fi
 
 if [ "${MODE}" = "test" ]; then
    echo Test mode.
-   exit -1
+   exit 0
 else
    exec /lib/systemd/systemd --log-target=console --log-level=err
 fi
