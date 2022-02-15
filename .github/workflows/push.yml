@@ -5,8 +5,8 @@ on:
     inputs:
       release:
         description: 'Publish release - or test only'
-        default: true
-        required: false
+        default: 'true'
+        required: true
         type: boolean
   #push:
    # branches:
