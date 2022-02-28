@@ -35,6 +35,9 @@ if [ "${MODE}" = "test" ]; then
    setsid test-3cx.sh &
 fi
 
+mkdir /run/phonesystem
+chown phonesystem:phonesystem /run/phonesystem
+
 echo Start systemd
 
 exec /lib/systemd/systemd --log-target=console --log-level=err
