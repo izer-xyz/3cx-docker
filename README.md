@@ -109,12 +109,15 @@ $ docker run \
 
 ## Troubleshooting
  
- * Check the logs: `/var/lib/3cxpbx/Data/Logs/PbxConfigTool.log`
+ * Setup issues, check the logs: `/var/lib/3cxpbx/Data/Logs/PbxConfigTool.log`
 
  * Failed setup (Warning this will delete all user data!): 
 ```
   $ docker exec -it [container id]  /usr/sbin/3CXCleanup
 ```
+
+ * Post setup issues: `/var/lib/3cxpbx/Instance0/Data/Logs/*`
+
 
 # References
 
