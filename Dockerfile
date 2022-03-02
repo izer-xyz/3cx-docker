@@ -1,6 +1,7 @@
 FROM debian:buster
 
-ARG PACKAGE_VERSION=18.0.1.237
+ARG PACKAGE_VERSION=18.0.2.314
+
 ENV container docker
 ENV LC_ALL C
 ENV DEBIAN_FRONTEND noninteractive
