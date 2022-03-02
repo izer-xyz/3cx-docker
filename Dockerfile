@@ -14,7 +14,7 @@ RUN chmod +x /bin/systemctl \
     && wget -O- http://downloads.3cx.com/downloads/3cxpbx/public.key | apt-key add - \   
     && echo "deb http://downloads.3cx.com/downloads/debian buster main" | tee /etc/apt/sources.list.d/3cxpbx.list \
     && apt-get update -qq \
-    && apt-get install -d -qq -y --no-install-recommends 3cxpbx=$PACKAGE_VERSION systemd systemd-sysv \
+    && apt-get upgrade -qq \
     && apt-get install -qq -y --no-install-recommends 3cxpbx=$PACKAGE_VERSION \
     && apt-get install -qq -y --no-install-recommends systemd systemd-sysv  \
     && apt-get clean -qq \
