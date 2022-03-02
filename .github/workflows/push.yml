@@ -53,7 +53,10 @@ jobs:
           push: true
           build-args: |
             PACKAGE_VERSION=${{ env.package_version }}
-          tags: ghcr.io/izer-xyz/3cx:test
+          tags: |
+            ghcr.io/izer-xyz/3cx:${{ env.package_version }}-test-${{ github.run_number }}
+            ghcr.io/izer-xyz/3cx:${{ env.package_version }}-test
+            ghcr.io/izer-xyz/3cx:test
           cache-from: type=gha
           cache-to: type=gha,mode=max
       -
