@@ -51,9 +51,11 @@ jobs:
         with:
           context: .
           push: true
+          build-args: |
+            PACKAGE_VERSION=${{ env.package_version }}
           tags: ghcr.io/izer-xyz/3cx:test
-          #cache-from: type=gha
-          #cache-to: type=gha,mode=max
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
       -
         name: Test image
         timeout-minutes: 1
