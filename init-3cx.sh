@@ -14,7 +14,8 @@ if [ ! -d $var ]; then
      # has backup?
      if [ -f ${CX_BACKUP_FILE:-/no-default-backup} ]; then
        echo Backup found. No WebConfig. 
-       echo Restore from $CX_BACKUP_FILE ...
+       echo Restore from
+       ls -la $CX_BACKUP_FILE
        echo Generate default restore config /etc/3cxpbx/setupconfig.xml ...
        mkdir /etc/3cxpbx
        envsubst < /usr/local/share/setupconfig-3cx-restore.xml > /etc/3cxpbx/setupconfig.xml
