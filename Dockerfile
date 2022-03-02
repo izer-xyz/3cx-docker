@@ -12,10 +12,11 @@ RUN chmod +x /bin/systemctl \
     && apt-get update -qq \
     && apt-get install -qq --no-install-recommends -y unattended-upgrades ca-certificates wget gnupg1 gettext-base \
     && wget -O- http://downloads.3cx.com/downloads/3cxpbx/public.key | apt-key add - \   
-    && echo "deb http://downloads.3cx.com/downloads/debian buster main" | tee /etc/apt/sources.list.d/3cxpbx.list \
-    && apt-get update -qq \
+    && echo "deb http://downloads.3cx.com/downloads/debian buster main" | tee /etc/apt/sources.list.d/3cxpbx.list 
+RUN apt-get update -qq \
     && apt-get upgrade -qq \
     && apt-get install -qq -y --no-install-recommends 3cxpbx=$PACKAGE_VERSION \
+    && apt-get update -qq \
     && apt-get install -qq -y --no-install-recommends systemd systemd-sysv  \
     && apt-get clean -qq \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
