@@ -8,6 +8,11 @@ on:
         default: 'true'
         required: true
         type: boolean
+      debian_version:
+       description: 'Debian version (buster vs buster-testing)'
+       default: 'buster'
+       required: true
+       type: string
   #push:
    # branches:
     #  - 'main'
@@ -18,7 +23,7 @@ jobs:
     steps:
       - name: Get package version
         run: |
-          export url=http://downloads.3cx.com/downloads/debian/dists/buster/main/binary-amd64/Packages.gz
+          export url=http://downloads.3cx.com/downloads/debian/dists/${{ github.event.inputs.debian_version }}/main/binary-amd64/Packages.gz
           export package=3cxpbx
           echo package_version=$(curl -s $url | gunzip | grep -A 10 "^Package: $package$" | awk '/Version: / { print $2 }' | sort -r | head -1) >> $GITHUB_ENV
       -
@@ -75,6 +80,7 @@ jobs:
           push: true
           build-args: |
             PACKAGE_VERSION=${{ env.package_version }}
+            DEBIAN_VERSION=${{ github.event.inputs.debian_version }}
           tags: |
             ghcr.io/izer-xyz/3cx:${{ env.package_version }}-${{ github.run_number }}
             ghcr.io/izer-xyz/3cx:${{ env.package_version }}
