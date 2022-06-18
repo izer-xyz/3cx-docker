@@ -58,6 +58,7 @@ jobs:
           push: true
           build-args: |
             PACKAGE_VERSION=${{ env.package_version }}
+            DEBIAN_VERSION=${{ github.event.inputs.debian_version }}
           tags: |
             ghcr.io/izer-xyz/3cx:${{ env.package_version }}-test-${{ github.run_number }}
             ghcr.io/izer-xyz/3cx:${{ env.package_version }}-test
