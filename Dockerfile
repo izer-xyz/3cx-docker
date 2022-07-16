@@ -13,7 +13,7 @@ RUN chmod +x /bin/systemctl \
     && apt-get update -qq \
     && apt-get install -qq --no-install-recommends -y unattended-upgrades ca-certificates wget gnupg1 gettext-base \
     && wget -O- http://downloads.3cx.com/downloads/3cxpbx/public.key | apt-key add - \   
-    && echo "deb http://repo.3cx.com/debian $DEBIAN_VERSION main" | tee /etc/apt/sources.list.d/3cxpbx.list 
+    && echo "deb http://repo.3cx.com/3cx $DEBIAN_VERSION main" | tee /etc/apt/sources.list.d/3cxpbx.list 
 RUN apt-get update -qq \
     && apt-get upgrade -qq \
     && apt-get install -qq -y --no-install-recommends 3cxpbx=$PACKAGE_VERSION \
