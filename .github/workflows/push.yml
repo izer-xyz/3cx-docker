@@ -23,7 +23,7 @@ jobs:
     steps:
       - name: Get package version
         run: |
-          export url=http://downloads.3cx.com/downloads/debian/dists/${{ github.event.inputs.debian_version }}/main/binary-amd64/Packages.gz
+          export url=http://repo.3cx.com/3cx/dists/${{ github.event.inputs.debian_version }}/main/binary-amd64/Packages.gz
           export package=3cxpbx
           echo package_version=$(curl -s $url | gunzip | grep -A 10 "^Package: $package$" | awk '/Version: / { print $2 }' | sort -r | head -1) >> $GITHUB_ENV
       -
