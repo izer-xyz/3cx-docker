@@ -108,15 +108,20 @@ $ docker run \
 
 
 ## Troubleshooting
- 
- * Setup issues, check the logs: `/var/lib/3cxpbx/Data/Logs/PbxConfigTool.log`
 
- * Failed setup (Warning this will delete all user data!): 
+ 1. Container doesn't start. `systemd` can be tricky to get going as it depends on the host (and for that reason I am unlikely to be able to help see [#4](https://github.com/izer-xyz/3cx-docker/issues/4), [#9](https://github.com/izer-xyz/3cx-docker/issues/9) ). Good starting point is to run the minimum process with debug enabled: 
+```
+ $ docker run -it --rm --tmpfs /run --tmpfs /run/lock -v /sys/fs/cgroup:/sys/fs/cgroup:ro izerxyz/3cx:latest /lib/systemd/systemd --log-level=debug --log-target=console --show-status=true
+```
+ 
+ 2. Setup issues, check the logs: `/var/lib/3cxpbx/Data/Logs/PbxConfigTool.log`
+
+ 3. Failed setup (Warning this will delete all user data!): 
 ```
   $ docker exec -it [container id]  /usr/sbin/3CXCleanup
 ```
 
- * Post setup issues: `/var/lib/3cxpbx/Instance0/Data/Logs/*`
+ 4. Post setup issues: `/var/lib/3cxpbx/Instance0/Data/Logs/*`
 
 
 # References
