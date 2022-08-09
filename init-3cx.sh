@@ -37,10 +37,9 @@ if [ "${MODE}" = "test" ]; then
 fi
 
 
-if id "phonesystem" &>/dev/null; then
-   mkdir /run/phonesystem
-   chown phonesystem:phonesystem /run/phonesystem
-fi
+mkdir /run/phonesystem
+chown -f phonesystem:phonesystem /run/phonesystem
+
 
 echo Start systemd
 
