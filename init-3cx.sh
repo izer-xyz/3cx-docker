@@ -38,7 +38,7 @@ fi
 
 
 mkdir /run/phonesystem
-chown -f phonesystem:phonesystem /run/phonesystem
+chown -f phonesystem:phonesystem /run/phonesystem 2> /dev/null
 
 
 echo Start systemd
