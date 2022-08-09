@@ -36,8 +36,11 @@ if [ "${MODE}" = "test" ]; then
    setsid test-3cx.sh &
 fi
 
-mkdir /run/phonesystem
-chown phonesystem:phonesystem /run/phonesystem
+
+if id "phonesystem" &>/dev/null; then
+   mkdir /run/phonesystem
+   chown phonesystem:phonesystem /run/phonesystem
+fi
 
 echo Start systemd
 
