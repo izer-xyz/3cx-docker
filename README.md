@@ -109,7 +109,7 @@ $ docker run \
 
 ## Troubleshooting
 
- 1. Container doesn't start. `systemd` can be tricky to get going as it depends on the host (and for that reason I am unlikely to be able to help see [#4](https://github.com/izer-xyz/3cx-docker/issues/4), [#9](https://github.com/izer-xyz/3cx-docker/issues/9) ). Good starting point is to run the minimum process with debug enabled: 
+ 1. Container doesn't start. `systemd` can be tricky to get going as it depends on the host (and for that reason I am unlikely to be able to help see [#4](https://github.com/izer-xyz/3cx-docker/issues/4), [#9](https://github.com/izer-xyz/3cx-docker/issues/9) ). There is a [workaround](https://github.com/izer-xyz/3cx-docker/issues/17#issuecomment-1329787269) that may help in some scenarios. Good starting point is to run the minimum process with debug enabled: 
 ```
  $ docker run -it --rm --tmpfs /run --tmpfs /run/lock -v /sys/fs/cgroup:/sys/fs/cgroup:ro izerxyz/3cx:latest /lib/systemd/systemd --log-level=debug --log-target=console --show-status=true
 ```
