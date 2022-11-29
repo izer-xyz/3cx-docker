@@ -36,7 +36,7 @@ $ docker run \
 
  2. Setup 3CX using the web config (this only runs the first time the container starts)
 ```
-  chrome http://[hostname]:5015/?v=2
+  open http://[hostname]:5015/?v=2
 ```
 
 ## Upgrade process
