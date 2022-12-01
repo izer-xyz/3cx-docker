@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-exit 1
+sleep 2
 
 echo Testing...
 
