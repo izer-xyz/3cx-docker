@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 
-sleep 2
+sleep --help
+
+sleep 2s
 
 echo Testing...
 
