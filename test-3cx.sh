@@ -1,13 +1,11 @@
 #!/usr/bin/env sh
-set -x
+
+exit 1
 
 echo Testing...
 
 echo Sample restore config:
 envsubst < /usr/local/share/setupconfig-3cx-restore.xml
-
-which netstat
-netstat -tna 
 
 echo -n Wait for webconfig
 while ! netstat -tna | grep 'LISTEN\>' | grep -q ':5015\>'; do
