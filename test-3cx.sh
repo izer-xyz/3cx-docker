@@ -1,13 +1,15 @@
 #!/usr/bin/env sh
 
+echo Testing...
+
 echo Sample restore config:
 envsubst < /usr/local/share/setupconfig-3cx-restore.xml
 
-echo Wait for webconfig
-if ! wget localhost:5015; then
-  echo Failed.
-  exit -1
-fi
+echo -n Wait for webconfig
+while ! netstat -tna | grep 'LISTEN\>' | grep -q ':5015\>'; do
+  echo -n .
+  sleep 2
+done
 
 echo done.
 
