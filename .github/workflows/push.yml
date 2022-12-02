@@ -19,7 +19,7 @@ on:
   
 jobs:
   docker:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - name: Get package version
         run: |
@@ -69,7 +69,8 @@ jobs:
         name: Test image
         timeout-minutes: 1
         run: |
-          docker run -t --rm --env MODE=test --tmpfs /tmp --tmpfs /run --tmpfs /run/lock -v /sys/fs/cgroup:/sys/fs/cgroup:ro ghcr.io/izer-xyz/3cx:test
+          #docker run -t --rm --env MODE=test --tmpfs /tmp --tmpfs /run --tmpfs /run/lock -v /sys/fs/cgroup:/sys/fs/cgroup:ro ghcr.io/izer-xyz/3cx:test
+          docker run -t --rm --env MODE=test --tmpfs /tmp --tmpfs /run --tmpfs /run/lock --cgroup-parent=docker.slice --cgroupns private ghcr.io/izer-xyz/3cx:test
       -
         name: Build and push (release)
         if: github.event.inputs.release == 'true'
