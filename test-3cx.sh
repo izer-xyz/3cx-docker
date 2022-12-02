@@ -1,18 +1,12 @@
 #!/usr/bin/env sh
 
-sleep --help
-
-sleep 2s
-
-echo Testing...
-
 echo Sample restore config:
 envsubst < /usr/local/share/setupconfig-3cx-restore.xml
 
 echo -n Wait for webconfig
-while ! netstat -tna | grep 'LISTEN\>' | grep -q ':5015\>'; do
-  echo -n .
-  sleep 2
+if ! curl --retry 100  --retry-delay 2 --retry-all-errors localhost:5015; do
+  echo Failed.
+  exit -1
 done
 
 echo done.
