@@ -69,7 +69,7 @@ jobs:
         name: Test image
         timeout-minutes: 1
         run: |
-          docker run --rm --env MODE=test --tmpfs /tmp --tmpfs /run --tmpfs /run/lock -v /sys/fs/cgroup:/sys/fs/cgroup:ro ghcr.io/izer-xyz/3cx:test
+          docker run -t --rm --env MODE=test --tmpfs /tmp --tmpfs /run --tmpfs /run/lock -v /sys/fs/cgroup:/sys/fs/cgroup:ro ghcr.io/izer-xyz/3cx:test
       -
         name: Build and push (release)
         if: github.event.inputs.release == 'true'
