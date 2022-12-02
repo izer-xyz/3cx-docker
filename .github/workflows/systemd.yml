@@ -1,0 +1,29 @@
+name: push
+
+on:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: 'Publish release (untick for test only)'
+        default: 'true'
+        required: true
+        type: boolean
+      debian_version:
+       description: 'Debian version (buster vs buster-testing)'
+       default: 'buster'
+       required: true
+       type: string
+  #push:
+   # branches:
+    #  - 'main'
+  
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Test image
+        timeout-minutes: 1
+        run: |
+          #docker run -t --rm --env MODE=test --tmpfs /tmp --tmpfs /run --tmpfs /run/lock -v /sys/fs/cgroup:/sys/fs/cgroup:ro ghcr.io/izer-xyz/3cx:test
+          docker run -t --rm --env MODE=test --tmpfs /tmp --tmpfs /run --tmpfs /run/lock --cgroup-parent=docker.slice --cgroupns private ghcr.io/izer-xyz/3cx:test
