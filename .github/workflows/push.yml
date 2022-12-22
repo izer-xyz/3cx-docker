@@ -28,7 +28,7 @@ jobs:
           export url=http://repo.3cx.com/3cx/dists/${{ github.event.inputs.debian_version }}/main/binary-amd64/Packages.gz
           export package=3cxpbx
           export package_version=$(curl -s $url | gunzip | grep -A 10 "^Package: $package$" | awk '/Version: / { print $2 }' | sort -r | head -1)
-          if [[ ! $(curl "https://www.3cx.com/blog/change-log/phone-system-change-log/" --silent | htmlq "h2" -1) == *"${package_version}"* ]]; then export changelog="Failed extract"; fi
+          if [[ ! $(curl "https://www.3cx.com/blog/change-log/phone-system-change-log/" --silent | htmlq "h2" -1) == *"${package_version}"* ]]; then export changelog=""; fi
           echo package_version=$package_version >> $GITHUB_ENV
           echo changelog=$changelog >> $GITHUB_ENV
       -
@@ -108,8 +108,10 @@ jobs:
             3CX v${{ env.package_version }} docker image:
             > docker run izerxyz/3cx:${{ env.package_version }}
             
-            Changelog: 
-              - https://www.3cx.com/blog/change-log/phone-system-change-log/
+            Changelog:
+              ${{ env.changelog }}
+              
+            https://www.3cx.com/blog/change-log/phone-system-change-log/
 
       - 
         name: Create TestRelease
@@ -119,13 +121,15 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
           tag_name: ${{ env.package_version }}-test-${{ github.run_number }}
-          release_name: Test v${{ env.package_version }}-test-${{ github.run_number }}
+          release_name: Pre-release v${{ env.package_version }}-test-${{ github.run_number }}
           prerelease: true
           body: |
             3CX v${{ env.package_version }}-test docker image:
             > docker run ghcr.io/izer-xyz/3cx:${{ env.package_version }}-test
             
-            Changelog (https://www.3cx.com/blog/change-log/phone-system-change-log/):
+            Changelog:
               ${{ env.changelog }}
+              
+            https://www.3cx.com/blog/change-log/phone-system-change-log/
 
       
