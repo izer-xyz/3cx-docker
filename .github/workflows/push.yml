@@ -120,9 +120,9 @@ jobs:
           prerelease: true
           body: |
             3CX v${{ env.package_version }}-test docker image:
-            > docker run izerxyz/3cx:${{ env.package_version }}-test
+            > docker run ghcr.io/izer-xyz/3cx:${{ env.package_version }}-test
             
             Changelog (https://www.3cx.com/blog/change-log/phone-system-change-log/):
-              {{ env.changelog }}
+              ${{ env.changelog }}
 
       
