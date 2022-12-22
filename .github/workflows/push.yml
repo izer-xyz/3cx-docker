@@ -28,7 +28,7 @@ jobs:
           export url=http://repo.3cx.com/3cx/dists/${{ github.event.inputs.debian_version }}/main/binary-amd64/Packages.gz
           export package=3cxpbx
           export package_version=$(curl -s $url | gunzip | grep -A 10 "^Package: $package$" | awk '/Version: / { print $2 }' | sort -r | head -1)
-          if [[ $(curl "https://www.3cx.com/blog/change-log/phone-system-change-log/" --silent | htmlq "h2" -1) == *"peter"* ]]; then export changelog="Failed extract"; fi
+          if [[ ! $(curl "https://www.3cx.com/blog/change-log/phone-system-change-log/" --silent | htmlq "h2" -1) == *"${package_version)"* ]]; then export changelog="Failed extract"; fi
           echo package_version=$package_version >> $GITHUB_ENV
           echo changelog=$changelog >> $GITHUB_ENV
       -
