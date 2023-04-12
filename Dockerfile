@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM debian:buster-20230109-slim
 
 ARG PACKAGE_VERSION=18.0.2.314
 ARG DEBIAN_VERSION=buster
