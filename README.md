@@ -2,6 +2,12 @@
 [![GitHub Release](https://img.shields.io/github/v/release/izer-xyz/3cx-docker?style=flat-square)](https://github.com/izer-xyz/3cx-docker/releases)
 [![DockerHub Pulls](https://img.shields.io/docker/pulls/izerxyz/3cx?style=flat-square)](https://hub.docker.com/r/izerxyz/3cx)
 
+---
+
+*This project is no longer maintained as 3cx doesn't publish ARM binaries and last build failed for no obvious reasons.*
+
+---
+
 > Use at your own risk. It comes with no guarantee. Always do backups. Etc.
 
 # 3cx-docker
